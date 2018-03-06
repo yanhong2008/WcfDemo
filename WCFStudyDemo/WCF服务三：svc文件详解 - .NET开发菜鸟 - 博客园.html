@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://www.cnblogs.com/dotnet261010/p/7407444.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/bundle-Autumn.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/bundle-Autumn-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/dotnet261010/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/dotnet261010/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/dotnet261010/wlwmanifest.xml">
+<script async="" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/encoder.js.下载"></script><script src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'dotnet261010', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<table id="blog_header" cellspacing="0" cellpadding="0" width="100%" border="0" class="banner" height="250" background="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/bg_banner.jpg">
+        <tbody><tr>
+            <td width="61">
+                &nbsp;
+            </td>
+            <td width="236" align="center">
+                
+<br><br><br><br><br><br><br>
+<div id="header">
+	<span>
+		<a id="Header1_HeaderTitle" href="http://www.cnblogs.com/dotnet261010/">.NET开发菜鸟</a><br><br>
+		
+	</span>
+</div>
+            </td>
+            <td style="padding-bottom: 30px" align="center" valign="bottom">
+                &nbsp;
+            </td>
+        </tr>
+</tbody></table>
+<table align="center" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr>
+        <td width="60">
+            &nbsp;
+        </td>
+        <td id="sidebar" valign="top" s="">
+            <table align="center" width="100%" height="1400" cellspacing="0" cellpadding="5" border="0" bgcolor="white">
+                <tbody><tr>
+                    <td class="banner" valign="top" style="padding-top: 0px">
+                        
+                            
+<div class="news"><div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/dotnet261010/">.NET开发菜鸟</a><br>园龄：<a href="https://home.cnblogs.com/u/dotnet261010/" title="入园时间：2016-09-27">1年5个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/dotnet261010/followers/">23</a><br>关注：<a href="https://home.cnblogs.com/u/dotnet261010/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;e29b155b-5f84-e611-845c-ac853d9f53ac&#39;)">+加关注</a></div><script>getFollowStatus('e29b155b-5f84-e611-845c-ac853d9f53ac')</script></div></div><script type="text/javascript">loadBlogNews();</script></div>
+
+                            <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/dotnet261010/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/dotnet261010/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/dotnet261010/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/dotnet261010/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/dotnet261010/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+		<h1 class="listtitle">随笔分类</h1>
+		
+				<ul class="list">
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/941632.html">ASP.NET MVC(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/891965.html">C#(39)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/926268.html">C#网络编程(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1036027.html">CSS(6)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/918820.html">DEV(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1027869.html">Entity Framework(25)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/928147.html">GDI+(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/945762.html">HTML(3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/946765.html">JavaScript(4)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1051159.html">jQuery(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1165613.html">JSON(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/997880.html">LINQ(7)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1068098.html">MongoDB(6)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/939474.html">Oracle数据库(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1032524.html">redis(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/887941.html">SQL SERVER(9)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_16" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1058570.html">T4模板(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_17" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/923743.html">WCF服务(5)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_18" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/909286.html">web(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_19" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/923379.html">Windows服务(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_20" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/935256.html">WPF(11)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_21" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/922068.html">多线程(1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_22" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1144022.html">反射（Reflection）(2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_23" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/936088.html">开发框架(4)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_24" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1056967.html">面向对象设计原则(7)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_25" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1137015.html">轻量级ORM框架Dapper应用(6)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_0_Link_26" class="listitem" href="http://www.cnblogs.com/dotnet261010/category/1057294.html">设计模式(4)</a> </li>
+			
+				</ul>
+			
+	
+		<h1 class="listtitle">随笔档案</h1>
+		
+				<ul class="list">
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2018/02.html">2018年2月 (4)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2018/01.html">2018年1月 (15)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/12.html">2017年12月 (14)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/11.html">2017年11月 (2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/08.html">2017年8月 (29)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/07.html">2017年7月 (15)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/06.html">2017年6月 (3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/05.html">2017年5月 (11)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/04.html">2017年4月 (17)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/03.html">2017年3月 (2)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/02.html">2017年2月 (13)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2017/01.html">2017年1月 (11)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2016/12.html">2016年12月 (9)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2016/11.html">2016年11月 (3)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2016/10.html">2016年10月 (1)</a> </li>
+			
+				<li class="listitem"><a id="CatList_LinkList_1_Link_15" class="listitem" href="http://www.cnblogs.com/dotnet261010/archive/2016/09.html">2016年9月 (5)</a> </li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dotnet261010/p/7407444.html#3900962">1. Re:WCF服务三：svc文件详解</a></li>
+        <li class="recent_comment_body">@.NET开发菜鸟使用直接添加引用的方式，服务端的IP地址改变了，不需要把代码放到生产环境中重新编译，也是直接修改config文件...</li>
+        <li class="recent_comment_author">--月月想你，李</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html#3885526">2. Re:C#多线程</a></li>
+        <li class="recent_comment_body">最后一个知识点，说白了，就是子线程使用父线程资源，可以这么理解吗？</li>
+        <li class="recent_comment_author">--屌丝大叔的笔记</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html#3884381">3. Re:C#多线程</a></li>
+        <li class="recent_comment_body">楼主你好，我刚刚vs 2015试了一下 ，在winform中 直接回调函数，好像 也可以执行。 代码如下 private void button1_Click(object send......</li>
+        <li class="recent_comment_author">--杨澹.NET</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html#3884250">4. Re:C#多线程</a></li>
+        <li class="recent_comment_body">真的好详细！谢谢您！</li>
+        <li class="recent_comment_author">--杨澹.NET</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html#3884244">5. Re:C#多线程</a></li>
+        <li class="recent_comment_body">谢谢楼主的讲解！非常的详细！ 现在写线程好像有一种简单的写法：比如说：Thread thread = new Thread(new ThreadStart(test.MyThread));可以写成Th......</li>
+        <li class="recent_comment_author">--杨澹.NET</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html">1. C#多线程(23946)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6211900.html">2. C#网络编程二：Socket编程(11687)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7113523.html">3. C#里面的三种定时计时器：Timer(8269)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6513618.html">4. 使用C#实现实体类和XML相互转换(8251)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7087290.html">5. C#程序调用CMD执行命令(6988)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html">1. C#多线程(6)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7407444.html">2. WCF服务三：svc文件详解(6)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7363200.html">3. T4模板(1)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6352084.html">4. MVC教程一：MVC简介(1)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7198892.html">5. CSS三：CSS的三种引入方式(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/dotnet261010/p/6159984.html">1. C#多线程(9)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6211900.html">2. C#网络编程二：Socket编程(2)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6184032.html">3. WCF服务二：创建一个简单的WCF服务程序(1)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/6513618.html">4. 使用C#实现实体类和XML相互转换(1)</a></li><li><a href="http://www.cnblogs.com/dotnet261010/p/7407444.html">5. WCF服务三：svc文件详解(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+                        
+                        <br>
+                        <center>
+                            Powered by <a href="http://www.cnblogs.com/">博客园</a>
+                        </center>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+        <td valign="top" style="padding: 0">
+            <table align="center" width="100%" height="1400" cellspacing="0" cellpadding="5" border="0" bgcolor="white" class="index">
+                <tbody><tr>
+                    <td class="banner" valign="top">
+                        <center>
+                            <a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a> <span id="sitehome_link_split">|</span> 
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/dotnet261010/">首页</a> <span id="bloghome_link_split">|</span> 
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> <span id="newpost_link_split">|</span> 
+<!--<a id="MyLinks1_NewArticleLink" class="menu" href="/EnterMyBlog.aspx?NewArticle=1">发新文章</a> | -->
+<a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/.NET%E5%BC%80%E5%8F%91%E8%8F%9C%E9%B8%9F">联系</a> <span id="contact_link_split">|</span>  
+<a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/dotnet261010/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/dotnet261010/rss"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/xml.gif" alt="订阅"></a> <span id="rss_link_split">|</span> 
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+
+                        </center>
+                        
+<div id="post_detail">
+<div class="block">
+	<h1 class="block_title"><a id="cb_post_title_url" href="http://www.cnblogs.com/dotnet261010/p/7407444.html">WCF服务三：svc文件详解</a></h1>
+	<div class="post">
+		<div class="postcontent">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>在前面的文章中讲述过WCF服务的宿主程序主要包括：三种，在那篇文章中，简单的描述了如何把一个WCF服务寄宿到IIS上面，这篇文章中将具体讲述如何把一个WCF服务寄宿到IIS上面。</p>
+<p>一、新建一个WCF服务应用程序：</p>
+<p>文件-&gt;新建-&gt;项目：选择WCF下面的WCF服务应用程序</p>
+<p><img style="margin-right: auto; margin-left: auto; display: block" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824093827621-1708352628.png" alt=""></p>
+<p>二、分析WcfSvcDemo项目，该项目的结构如下：</p>
+<p><img style="margin-right: auto; margin-left: auto; display: block" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824094046699-1542420534.png" alt=""></p>
+<p>在该项目中，会默认生成一个IService1.cs的文件和Service1.svc文件。Service1.svc文件封装的就是提供给客户端的服务引用。<br>首先查看IService1.cs文件，从名字上面就可以看出这是一个接口文件，里面定义了一个接口IService1，接口上面使用了ServiceContract,意思是把这个接口声明为服务契约，服务契约是对客户端而言的，就是这个接口可以暴露出来让客户端可以看见。接口里面定义了两个方法，每个方法上面都使用了[OperationContract]，意思是把这两个方法声明为操作契约。只有把接口里面的方法声明为操作契约，在客户端里面才可以看到相应的方法，否则在客户端里面看不到在接口里面定义的方法。</p>
+<p>在来看Service.svc文件，可以看到下面有一个Service.svc.cs文件，这个文件里面定义了一个继承IService1接口的类Service1，并实现了IService1接口里面的方法。</p>
+<p>删除Service.svc.cs文件，可以查看Service.svc文件，该文件里面就一行代码；</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> &lt;%@ ServiceHost Language=<span style="color: #800000">"</span><span style="color: #800000">C#</span><span style="color: #800000">"</span> Debug=<span style="color: #800000">"</span><span style="color: #800000">true</span><span style="color: #800000">"</span> Service=<span style="color: #800000">"</span><span style="color: #800000">WcfSvcDemo.Service1</span><span style="color: #800000">"</span> CodeBehind=<span style="color: #800000">"</span><span style="color: #800000">Service1.svc.cs</span><span style="color: #800000">"</span> %&gt;</pre>
+</div>
+<p>这里面有两个重要的参数：Service和CodeBehind。Service是属性值是WCF的服务实现类的完全限定名。CodeBehind是服务实现类所在的文件名。在运行的时候，宿主程序从svc文件中的Service属性得到WCF服务的完全限定名，然后从配置文件中找到同名的servicce，进而找到所有的EndPoint，并根据其属性进行实例化。<br>配置文件中的Service名字必须是Service类名的完全限定名（即Namespace.classname）,EndPoint的Contract必须是Service接口的完全限定名。否则，程序就无法从程序集中找到相应的类进行加载。<br>注意：如果要修改接口实现类的名称，必须使用“重构”的方式进行修改，因为只有利用“重构”的方式修改Servie类名的时候，.svc文件里面Service的属性值才会被修改，利用其它方式修改类名，.svc文件里面Service的属性值会保留原值，这样在运行的时候，根据svc里面Service的属性值查找不到相应的类，程序就会报错。</p>
+<p>svc文件里面还有一个重要的参数：ServiceHostFactory。ServiceHostFactory旨在解决从IIS或WAS中访问自定义ServiceHost的问题。因为从ServiceHost派生的自定义宿主是动态配置的并且可能为各种类型，所以宿主环境从不会直接将其实例化。相反，WCF使用工厂模式提供宿主环境和服务的具体类型之间的间接层。除非进行通知，否则它使用返回ServiceHost的实例的ServiceHostFactory的默认实现。（在新建的svc文件中默认实现就是CodeBehind属性的值）。但也可以通过在@ServiceHost指令中指定工厂实现的CLR类型名称来提供自己的工厂（用于返回派生宿主）。</p>
+<p>下面是用于返回派生的ServiceHost的自定义ServiceHostFactory:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel.Activation;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> Public.CustomService
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> CustomServiceHostFactory : ServiceHostFactory
+</span><span style="color: #008080">11</span> <span style="color: #000000">    {
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">protected</span> <span style="color: #0000ff">override</span><span style="color: #000000"> ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
+</span><span style="color: #008080">13</span> <span style="color: #000000">        {
+</span><span style="color: #008080">14</span>             CustomServiceHost customServiceHost = <span style="color: #0000ff">new</span><span style="color: #000000"> CustomServiceHost(serviceType, baseAddresses);
+</span><span style="color: #008080">15</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> customServiceHost;
+</span><span style="color: #008080">16</span> <span style="color: #000000">        }          
+</span><span style="color: #008080">17</span> <span style="color: #000000">    }
+</span><span style="color: #008080">18</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>其中CustomServiceHost是自定义的继承自ServiceHost的类，用于读取配置文件的配置，CustomServiceHost类的定义如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel.Activation;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> Public.CustomService
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> CustomServiceHost :ServiceHost
+</span><span style="color: #008080">11</span> <span style="color: #000000">    {
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">public</span> CustomServiceHost(Type serviceType, <span style="color: #0000ff">params</span><span style="color: #000000"> Uri[] baseAddresses)
+</span><span style="color: #008080">13</span>             : <span style="color: #0000ff">base</span><span style="color: #000000">(serviceType, baseAddresses)
+</span><span style="color: #008080">14</span> <span style="color: #000000">        { 
+</span><span style="color: #008080">15</span>             <span style="color: #008000">//</span><span style="color: #008000">加载Web.config的配置</span>
+<span style="color: #008080">16</span> <span style="color: #000000">            log4net.Config.XmlConfigurator.Configure();
+</span><span style="color: #008080">17</span> <span style="color: #000000">        }
+</span><span style="color: #008080">18</span>         <span style="color: #0000ff">protected</span> <span style="color: #0000ff">override</span> <span style="color: #0000ff">void</span><span style="color: #000000"> ApplyConfiguration()
+</span><span style="color: #008080">19</span> <span style="color: #000000">        {
+</span><span style="color: #008080">20</span>             <span style="color: #0000ff">base</span><span style="color: #000000">.ApplyConfiguration();
+</span><span style="color: #008080">21</span> <span style="color: #000000">        }
+</span><span style="color: #008080">22</span> <span style="color: #000000">    }
+</span><span style="color: #008080">23</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>若要使用此工厂，而不使用默认工厂，则应该在@ServiceHost指令中提供相应的类型名称：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> &lt;%@ ServiceHost  Service=<span style="color: #800000">"</span><span style="color: #800000">CustomSvcDemo.DatabaseService</span><span style="color: #800000">"</span> Factory=<span style="color: #800000">"</span><span style="color: #800000">Public.CustomService.CustomServiceHostFactory</span><span style="color: #800000">"</span>  %&gt;</pre>
+</div>
+<p>其中Service是实现类的完全限定名，Factory是自定义ServiceHostFactory的完全限定名，Public是一个dll文件。</p>
+<p>若要使用此工厂，而不使用默认工厂，则应该在@ServiceHost指令中提供相应的类型名称：<br>尽管对于从CreateServiceHost返回的ServiceHost可以执行什么操作没有技术限制，但建议您尽可能使工厂实现简单化。如果有大量的自定义逻辑，最好将这些逻辑放入宿主内而不是工厂内，以便可以重用它们。<br>应在这里提及另一个承载API的层。WCF还具有ServiceHostBase和ServiceHostFactoryBase，可从中分别派生ServiceHost和ServiceHostFactory。对于您必须通过自己的自定义创建来交换元数据系统的大型组件的更高级方案，存在上述这些特性。</p>
+<p>下面通过两个具体的示例程序分别实现上面描述的默认工厂和自定义工厂。</p>
+<p>三、使用默认工厂方式</p>
+<p>删除新建项目时自动创建的IService1.cs和Service1.svc文件，然后添加一个svc文件，在项目上面右键-&gt;添加-&gt;新建项：<img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824114016918-1554730534.png" alt=""></p>
+<p>在新建项里面选择web里面的WCF服务，命名为MyService:</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824114147308-181684293.png" alt=""></p>
+<p>点“添加”，除了创建MyService.svc文件以外，还会自动创建一个名为IMyService.cs的接口文件，MyService.svc.cs里面的MyService默认实现IMyService接口.</p>
+<p>删除IMyService接口里面自动生成的方法，添加一个GetCurrentTime的方法，用来返回当前的时间，IMyService接口定义如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Runtime.Serialization;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> WcfSvcDemo
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #008000">//</span><span style="color: #008000"> 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码和配置文件中的接口名“IMyService”。</span>
+<span style="color: #008080">11</span> <span style="color: #000000">    [ServiceContract]
+</span><span style="color: #008080">12</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">interface</span><span style="color: #000000"> IMyService
+</span><span style="color: #008080">13</span> <span style="color: #000000">    {
+</span><span style="color: #008080">14</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;summary&gt;</span>
+<span style="color: #008080">15</span>         <span style="color: #808080">///</span><span style="color: #008000"> 获取当前时间
+</span><span style="color: #008080">16</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;/summary&gt;</span>
+<span style="color: #008080">17</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;returns&gt;&lt;/returns&gt;</span>
+<span style="color: #008080">18</span> <span style="color: #000000">        [OperationContract]
+</span><span style="color: #008080">19</span> <span style="color: #000000">        DateTime GetCurrentTime();
+</span><span style="color: #008080">20</span> <span style="color: #000000">    }
+</span><span style="color: #008080">21</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>4、MyService.svc.cs里面的MyService类实现IMyService接口，MyService类定义如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Runtime.Serialization;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> WcfSvcDemo
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #008000">//</span><span style="color: #008000"> 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码、svc 和配置文件中的类名“MyService”。
+</span><span style="color: #008080">11</span>     <span style="color: #008000">//</span><span style="color: #008000"> 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 MyService.svc 或 MyService.svc.cs，然后开始调试。</span>
+<span style="color: #008080">12</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> MyService : IMyService
+</span><span style="color: #008080">13</span> <span style="color: #000000">    {
+</span><span style="color: #008080">14</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;summary&gt;</span>
+<span style="color: #008080">15</span>         <span style="color: #808080">///</span><span style="color: #008000"> 返回当前时间
+</span><span style="color: #008080">16</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;/summary&gt;</span>
+<span style="color: #008080">17</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;returns&gt;&lt;/returns&gt;</span>
+<span style="color: #008080">18</span>         <span style="color: #0000ff">public</span><span style="color: #000000"> DateTime GetCurrentTime()
+</span><span style="color: #008080">19</span> <span style="color: #000000">        {
+</span><span style="color: #008080">20</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> DateTime.Now;
+</span><span style="color: #008080">21</span> <span style="color: #000000">        }
+</span><span style="color: #008080">22</span> <span style="color: #000000">    }
+</span><span style="color: #008080">23</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>5、修改配置文件，增加service、binding等节点，修改后的配置文件如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0"</span><span style="color: #0000ff">?&gt;</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">configuration</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 3</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">appSettings</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 4</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">system.web</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 5</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">compilation </span><span style="color: #ff0000">debug</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000"> targetFramework</span><span style="color: #0000ff">="4.0"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 6</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">httpRuntime</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 7</span>   <span style="color: #0000ff">&lt;/</span><span style="color: #800000">system.web</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 8</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">system.serviceModel</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 9</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">services</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">10</span>       <span style="color: #0000ff">&lt;</span><span style="color: #800000">service </span><span style="color: #ff0000">behaviorConfiguration</span><span style="color: #0000ff">="metadataBehavior"</span><span style="color: #ff0000"> name</span><span style="color: #0000ff">="WcfSvcDemo.MyService"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">11</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">endpoint </span><span style="color: #ff0000">address</span><span style="color: #0000ff">=""</span><span style="color: #ff0000"> binding</span><span style="color: #0000ff">="basicHttpBinding"</span><span style="color: #ff0000"> bindingConfiguration</span><span style="color: #0000ff">="Contract"</span><span style="color: #ff0000"> name</span><span style="color: #0000ff">="MyService"</span><span style="color: #ff0000"> contract</span><span style="color: #0000ff">="WcfSvcDemo.IMyService"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">12</span>       <span style="color: #0000ff">&lt;/</span><span style="color: #800000">service</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">13</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">services</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">14</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">behaviors</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">15</span>       <span style="color: #0000ff">&lt;</span><span style="color: #800000">serviceBehaviors</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">16</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">behavior </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="metadataBehavior"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">17</span>           <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 为避免泄漏元数据信息，请在部署前将以下值设置为 false </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080">18</span>           <span style="color: #0000ff">&lt;</span><span style="color: #800000">serviceMetadata </span><span style="color: #ff0000">httpGetEnabled</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000"> httpsGetEnabled</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">19</span>           <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 要接收故障异常详细信息以进行调试，请将以下值设置为 true。在部署前设置为 false 以避免泄漏异常信息 </span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080">20</span>           <span style="color: #0000ff">&lt;</span><span style="color: #800000">serviceDebug </span><span style="color: #ff0000">includeExceptionDetailInFaults</span><span style="color: #0000ff">="false"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">21</span>         <span style="color: #0000ff">&lt;/</span><span style="color: #800000">behavior</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">22</span>       <span style="color: #0000ff">&lt;/</span><span style="color: #800000">serviceBehaviors</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">23</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">behaviors</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">24</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">bindings</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">25</span>       <span style="color: #0000ff">&lt;</span><span style="color: #800000">basicHttpBinding</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">26</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">binding </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="Contract"</span><span style="color: #ff0000"> closeTimeout</span><span style="color: #0000ff">="00:00:05"</span><span style="color: #ff0000"> openTimeout</span><span style="color: #0000ff">="00:00:05"</span><span style="color: #ff0000"> receiveTimeout</span><span style="color: #0000ff">="11:00:00"</span><span style="color: #ff0000"> sendTimeout</span><span style="color: #0000ff">="11:00:00"</span><span style="color: #ff0000"> maxBufferSize</span><span style="color: #0000ff">="2147483647"</span><span style="color: #ff0000"> maxBufferPoolSize</span><span style="color: #0000ff">="2147483647"</span><span style="color: #ff0000"> maxReceivedMessageSize</span><span style="color: #0000ff">="2147483647"</span><span style="color: #ff0000"> transferMode</span><span style="color: #0000ff">="Buffered"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">27</span>           <span style="color: #0000ff">&lt;</span><span style="color: #800000">readerQuotas </span><span style="color: #ff0000">maxDepth</span><span style="color: #0000ff">="32"</span><span style="color: #ff0000"> maxStringContentLength</span><span style="color: #0000ff">="2147483647"</span><span style="color: #ff0000"> maxArrayLength</span><span style="color: #0000ff">="16384"</span><span style="color: #ff0000"> maxBytesPerRead</span><span style="color: #0000ff">="4096"</span><span style="color: #ff0000"> maxNameTableCharCount</span><span style="color: #0000ff">="16384"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">28</span>         <span style="color: #0000ff">&lt;/</span><span style="color: #800000">binding</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">29</span>       <span style="color: #0000ff">&lt;/</span><span style="color: #800000">basicHttpBinding</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">30</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">bindings</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">31</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">protocolMapping</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">32</span>       <span style="color: #0000ff">&lt;</span><span style="color: #800000">add </span><span style="color: #ff0000">binding</span><span style="color: #0000ff">="basicHttpsBinding"</span><span style="color: #ff0000"> scheme</span><span style="color: #0000ff">="https"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">33</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">protocolMapping</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">34</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">serviceHostingEnvironment </span><span style="color: #ff0000">aspNetCompatibilityEnabled</span><span style="color: #0000ff">="false"</span><span style="color: #ff0000"> multipleSiteBindingsEnabled</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">35</span>   <span style="color: #0000ff">&lt;/</span><span style="color: #800000">system.serviceModel</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">36</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">system.webServer</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">37</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">modules </span><span style="color: #ff0000">runAllManagedModulesForAllRequests</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">38</span>     <span style="color: #008000">&lt;!--</span>
+<span style="color: #008080">39</span> <span style="color: #008000">        若要在调试过程中浏览 Web 应用程序根目录，请将下面的值设置为 True。
+</span><span style="color: #008080">40</span> <span style="color: #008000">        在部署之前将该值设置为 False 可避免泄露 Web 应用程序文件夹信息。
+</span><span style="color: #008080">41</span>       <span style="color: #008000">--&gt;</span>
+<span style="color: #008080">42</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">directoryBrowse </span><span style="color: #ff0000">enabled</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">43</span>   <span style="color: #0000ff">&lt;/</span><span style="color: #800000">system.webServer</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">44</span> <span style="color: #0000ff">&lt;/</span><span style="color: #800000">configuration</span><span style="color: #0000ff">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>主要是修改service节点里面的name是服务实现类的完全限定名，contract是服务接口的完全限定名。</p>
+<p>6、把WCF服务部署到IIS上面</p>
+<p>在IIS上面网站-&gt;添加网站：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824132143043-101817920.png" alt=""></p>
+<p>配置网站名称、路径、IP地址和端口：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824132545918-2088530749.png" alt=""></p>
+<p>网站配置完成以后，浏览.svc文件，验证网站是否配置成功，如出现下面的截图，说明网站配置成功：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824132806839-1455312405.png" alt=""></p>
+<p>7、创建代理类</p>
+<p>客户端引用WCF的时候一般是静态引用，直接添加服务引用，这种方式如果IP地址和端口号变了，需要用代码重新编译然后在部署，这样不方便。这里使用svcutil代理类的方式进行客户端的调用。</p>
+<p>使用svcutil生成代理类：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824134436871-660689475.png" alt=""></p>
+<p>新建一个项目，选择类库项目，把刚才生成的类文件添加到类库项目中，项目结构如下：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824135543746-1151202912.png" alt=""></p>
+<p>在类库项目中新添加一个类，命名为：MyServiceProxy，使用这个类来调用代理类，MyServiceProxy类的定义如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> Public.ConfigBinding;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Configuration;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 7</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 8</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Threading.Tasks;
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> MyProxyService
+</span><span style="color: #008080">11</span> <span style="color: #000000">{
+</span><span style="color: #008080">12</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> MyServiceProxy
+</span><span style="color: #008080">13</span> <span style="color: #000000">    {
+</span><span style="color: #008080">14</span>         <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span><span style="color: #000000"> MyServiceClient _databaseService;
+</span><span style="color: #008080">15</span> 
+<span style="color: #008080">16</span>         <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span><span style="color: #000000"> MyServiceClient DatabaseService
+</span><span style="color: #008080">17</span> <span style="color: #000000">        {
+</span><span style="color: #008080">18</span>             <span style="color: #0000ff">get</span>
+<span style="color: #008080">19</span> <span style="color: #000000">            {
+</span><span style="color: #008080">20</span>                 <span style="color: #0000ff">if</span> (_databaseService == <span style="color: #0000ff">null</span><span style="color: #000000">)
+</span><span style="color: #008080">21</span> <span style="color: #000000">                {
+</span><span style="color: #008080">22</span>                     <span style="color: #0000ff">string</span> sApServer1 = ConfigurationManager.AppSettings[<span style="color: #800000">"</span><span style="color: #800000">ApServer1</span><span style="color: #800000">"</span><span style="color: #000000">];
+</span><span style="color: #008080">23</span> 
+<span style="color: #008080">24</span>                     <span style="color: #0000ff">if</span> (sApServer1 == <span style="color: #0000ff">null</span><span style="color: #000000">)
+</span><span style="color: #008080">25</span> <span style="color: #000000">                    {
+</span><span style="color: #008080">26</span>                         _databaseService = <span style="color: #0000ff">new</span><span style="color: #000000"> MyServiceClient();
+</span><span style="color: #008080">27</span> <span style="color: #000000">                    }
+</span><span style="color: #008080">28</span>                     <span style="color: #0000ff">else</span>
+<span style="color: #008080">29</span> <span style="color: #000000">                    {
+</span><span style="color: #008080">30</span>                         EndpointAddress endPointAddr = <span style="color: #0000ff">new</span> EndpointAddress(<span style="color: #0000ff">string</span>.Format(<span style="color: #800000">"</span><span style="color: #800000">{0}/MyService.svc</span><span style="color: #800000">"</span><span style="color: #000000">, sApServer1));
+</span><span style="color: #008080">31</span>                         _databaseService = <span style="color: #0000ff">new</span><span style="color: #000000"> MyServiceClient(HttpBinding.BasicHttpBinding, endPointAddr);
+</span><span style="color: #008080">32</span> <span style="color: #000000">                    }
+</span><span style="color: #008080">33</span> <span style="color: #000000">                }
+</span><span style="color: #008080">34</span> 
+<span style="color: #008080">35</span>                 <span style="color: #0000ff">if</span> (_databaseService.State ==<span style="color: #000000"> CommunicationState.Faulted)
+</span><span style="color: #008080">36</span> <span style="color: #000000">                {
+</span><span style="color: #008080">37</span>                     <span style="color: #0000ff">string</span> sApServer2 = ConfigurationManager.AppSettings[<span style="color: #800000">"</span><span style="color: #800000">ApServer2</span><span style="color: #800000">"</span><span style="color: #000000">];
+</span><span style="color: #008080">38</span> 
+<span style="color: #008080">39</span>                     <span style="color: #0000ff">if</span> (sApServer2 == <span style="color: #0000ff">null</span><span style="color: #000000">)
+</span><span style="color: #008080">40</span> <span style="color: #000000">                    {
+</span><span style="color: #008080">41</span>                         _databaseService = <span style="color: #0000ff">new</span><span style="color: #000000"> MyServiceClient();
+</span><span style="color: #008080">42</span> <span style="color: #000000">                    }
+</span><span style="color: #008080">43</span>                     <span style="color: #0000ff">else</span>
+<span style="color: #008080">44</span> <span style="color: #000000">                    {
+</span><span style="color: #008080">45</span>                         EndpointAddress endPointAddr = <span style="color: #0000ff">new</span> EndpointAddress(<span style="color: #0000ff">string</span>.Format(<span style="color: #800000">"</span><span style="color: #800000">{0}/MyService.svc</span><span style="color: #800000">"</span><span style="color: #000000">, sApServer2));
+</span><span style="color: #008080">46</span>                         _databaseService = <span style="color: #0000ff">new</span><span style="color: #000000"> MyServiceClient(HttpBinding.BasicHttpBinding, endPointAddr);
+</span><span style="color: #008080">47</span> <span style="color: #000000">                    }
+</span><span style="color: #008080">48</span> <span style="color: #000000">                }
+</span><span style="color: #008080">49</span> 
+<span style="color: #008080">50</span>                 <span style="color: #0000ff">return</span><span style="color: #000000"> _databaseService;
+</span><span style="color: #008080">51</span> <span style="color: #000000">            }
+</span><span style="color: #008080">52</span> <span style="color: #000000">        }
+</span><span style="color: #008080">53</span> 
+<span style="color: #008080">54</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;summary&gt;</span>
+<span style="color: #008080">55</span>         <span style="color: #808080">///</span><span style="color: #008000"> 返回当前时间
+</span><span style="color: #008080">56</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;/summary&gt;</span>
+<span style="color: #008080">57</span>         <span style="color: #808080">///</span> <span style="color: #808080">&lt;returns&gt;&lt;/returns&gt;</span>
+<span style="color: #008080">58</span>         <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span><span style="color: #000000"> DateTime GetCurrentTime()
+</span><span style="color: #008080">59</span> <span style="color: #000000">        {
+</span><span style="color: #008080">60</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> DatabaseService.GetCurrentTime();
+</span><span style="color: #008080">61</span> <span style="color: #000000">        }
+</span><span style="color: #008080">62</span> <span style="color: #000000">    }
+</span><span style="color: #008080">63</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>ApServer1和ApServer2是在配置文件中配置的IP地址和端口号，这样如果IP地址和端口号变了，只需要修改配置文件就可以。</p>
+<p>GetCurrentTime()方法是调用的代理类里面的方法，把该方法定义为静态方法。</p>
+<p>8、创建客户端调用</p>
+<p>在解决方案中，新建一个winform程序，界面上面只有一个button按钮，点击按钮，弹出当前时间。需要添加对MyProxyService.dll文件的引用，在配置文件中增加ApServer1和ApServer2两个节点，配置文件如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff">?&gt;</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">configuration</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 3</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">appSettings</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 4</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">add </span><span style="color: #ff0000">key</span><span style="color: #0000ff">="ApServer1"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="http://127.0.0.1:8090"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 5</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">add </span><span style="color: #ff0000">key</span><span style="color: #0000ff">="ApServer2"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="http://127.0.0.1:8090"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 6</span>   <span style="color: #0000ff">&lt;/</span><span style="color: #800000">appSettings</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 7</span>   <span style="color: #0000ff">&lt;</span><span style="color: #800000">startup</span><span style="color: #0000ff">&gt;</span> 
+<span style="color: #008080"> 8</span>         <span style="color: #0000ff">&lt;</span><span style="color: #800000">supportedRuntime </span><span style="color: #ff0000">version</span><span style="color: #0000ff">="v4.0"</span><span style="color: #ff0000"> sku</span><span style="color: #0000ff">=".NETFramework,Version=v4.0"</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080"> 9</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">startup</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">10</span> <span style="color: #0000ff">&lt;/</span><span style="color: #800000">configuration</span><span style="color: #0000ff">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>button按钮事件代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ComponentModel;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Data;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Drawing;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 7</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 8</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Threading.Tasks;
+</span><span style="color: #008080"> 9</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Windows.Forms;
+</span><span style="color: #008080">10</span> <span style="color: #0000ff">using</span><span style="color: #000000"> MyProxyService;
+</span><span style="color: #008080">11</span> 
+<span style="color: #008080">12</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> WinformClient
+</span><span style="color: #008080">13</span> <span style="color: #000000">{
+</span><span style="color: #008080">14</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">partial</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Form1 : Form
+</span><span style="color: #008080">15</span> <span style="color: #000000">    {
+</span><span style="color: #008080">16</span>         <span style="color: #0000ff">public</span><span style="color: #000000"> Form1()
+</span><span style="color: #008080">17</span> <span style="color: #000000">        {
+</span><span style="color: #008080">18</span> <span style="color: #000000">            InitializeComponent();
+</span><span style="color: #008080">19</span> <span style="color: #000000">        }
+</span><span style="color: #008080">20</span> 
+<span style="color: #008080">21</span>         <span style="color: #0000ff">private</span> <span style="color: #0000ff">void</span> btn_CurrentTime_Click(<span style="color: #0000ff">object</span><span style="color: #000000"> sender, EventArgs e)
+</span><span style="color: #008080">22</span> <span style="color: #000000">        {
+</span><span style="color: #008080">23</span>             DateTime dtNow =<span style="color: #000000"> MyServiceProxy.GetCurrentTime();
+</span><span style="color: #008080">24</span>             MessageBox.Show(<span style="color: #800000">"</span><span style="color: #800000">当前时间:</span><span style="color: #800000">"</span> +<span style="color: #000000"> dtNow.ToString());
+</span><span style="color: #008080">25</span> <span style="color: #000000">        }
+</span><span style="color: #008080">26</span> <span style="color: #000000">    }
+</span><span style="color: #008080">27</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>点击按钮后，运行结果如下：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824144907918-666498964.png" alt=""></p>
+<p>四、使用自定义工厂的方式</p>
+<p>1、新添加一个WCF服务，命名为CustomService，把默认生成的CustomService.svc.cs文件删掉，重新添加一个类：CustomService，该类继承自生成的ICustomService接口，项目结构如下：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824150142746-402715817.png" alt=""></p>
+<p>修改CustomService.svc文件：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> &lt;%@ ServiceHost  Service=<span style="color: #800000">"</span><span style="color: #800000">WcfSvcDemo.CustomService</span><span style="color: #800000">"</span> Factory=<span style="color: #800000">"</span><span style="color: #800000">Public.CustomService.CustomServiceHostFactory</span><span style="color: #800000">"</span> %&gt;</pre>
+</div>
+<p>CustomServiceHostFactory是在另外的Public.dll里面创建的工厂类，用来返回ServiceHost，Public.dll的项目结构如下：</p>
+<p><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/1033738-20170824151009793-221901627.png" alt=""></p>
+<p>CustomServiceHost类继承自ServiceHost类，代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel.Activation;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> Public.CustomService
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> CustomServiceHost :ServiceHost
+</span><span style="color: #008080">11</span> <span style="color: #000000">    {
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">public</span> CustomServiceHost(Type serviceType, <span style="color: #0000ff">params</span><span style="color: #000000"> Uri[] baseAddresses)
+</span><span style="color: #008080">13</span>             : <span style="color: #0000ff">base</span><span style="color: #000000">(serviceType, baseAddresses)
+</span><span style="color: #008080">14</span> <span style="color: #000000">        { 
+</span><span style="color: #008080">15</span>             <span style="color: #008000">//</span><span style="color: #008000">加载Web.config的配置</span>
+<span style="color: #008080">16</span> <span style="color: #000000">            log4net.Config.XmlConfigurator.Configure();
+</span><span style="color: #008080">17</span> <span style="color: #000000">        }
+</span><span style="color: #008080">18</span>         <span style="color: #0000ff">protected</span> <span style="color: #0000ff">override</span> <span style="color: #0000ff">void</span><span style="color: #000000"> ApplyConfiguration()
+</span><span style="color: #008080">19</span> <span style="color: #000000">        {
+</span><span style="color: #008080">20</span>             <span style="color: #0000ff">base</span><span style="color: #000000">.ApplyConfiguration();
+</span><span style="color: #008080">21</span> <span style="color: #000000">        }
+</span><span style="color: #008080">22</span> <span style="color: #000000">    }
+</span><span style="color: #008080">23</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>CustomServiceHostFactory是工厂类，继承自ServiceHostFactory，用来返回ServiceHost，代码如下；</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel.Activation;
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> Public.CustomService
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">{
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> CustomServiceHostFactory : ServiceHostFactory
+</span><span style="color: #008080">11</span> <span style="color: #000000">    {
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">protected</span> <span style="color: #0000ff">override</span><span style="color: #000000"> ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
+</span><span style="color: #008080">13</span> <span style="color: #000000">        {
+</span><span style="color: #008080">14</span>             CustomServiceHost customServiceHost = <span style="color: #0000ff">new</span><span style="color: #000000"> CustomServiceHost(serviceType, baseAddresses);
+</span><span style="color: #008080">15</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> customServiceHost;
+</span><span style="color: #008080">16</span> <span style="color: #000000">        }          
+</span><span style="color: #008080">17</span> <span style="color: #000000">    }
+</span><span style="color: #008080">18</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>HttpBinding代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System;
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Collections.Generic;
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Linq;
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.ServiceModel;
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Text;
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Threading.Tasks;
+</span><span style="color: #008080"> 7</span> <span style="color: #0000ff">using</span><span style="color: #000000"> System.Xml;
+</span><span style="color: #008080"> 8</span> 
+<span style="color: #008080"> 9</span> <span style="color: #0000ff">namespace</span><span style="color: #000000"> Public.ConfigBinding
+</span><span style="color: #008080">10</span> <span style="color: #000000">{
+</span><span style="color: #008080">11</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> HttpBinding
+</span><span style="color: #008080">12</span> <span style="color: #000000">    {
+</span><span style="color: #008080">13</span>         <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span><span style="color: #000000"> BasicHttpBinding _BasicHttpBinding;
+</span><span style="color: #008080">14</span> 
+<span style="color: #008080">15</span>         <span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span><span style="color: #000000"> BasicHttpBinding BasicHttpBinding
+</span><span style="color: #008080">16</span> <span style="color: #000000">        {
+</span><span style="color: #008080">17</span>             <span style="color: #0000ff">get</span>
+<span style="color: #008080">18</span> <span style="color: #000000">            {
+</span><span style="color: #008080">19</span>                 <span style="color: #0000ff">if</span> (_BasicHttpBinding == <span style="color: #0000ff">null</span><span style="color: #000000">)
+</span><span style="color: #008080">20</span> <span style="color: #000000">                {
+</span><span style="color: #008080">21</span>                     _BasicHttpBinding = <span style="color: #0000ff">new</span><span style="color: #000000"> BasicHttpBinding();
+</span><span style="color: #008080">22</span> 
+<span style="color: #008080">23</span>                     <span style="color: #008000">//</span><span style="color: #008000"> 接收的讯息大小上限，默认值为65,536字节，
+</span><span style="color: #008080">24</span>                     <span style="color: #008000">//</span><span style="color: #008000"> 目前设定1k * 512，如果资料量大于这个值，请提出讨论，ex：8000笔资料大概128k</span>
+<span style="color: #008080">25</span>                     _BasicHttpBinding.MaxReceivedMessageSize = <span style="color: #800080">400</span> * <span style="color: #800080">8192</span> * <span style="color: #800080">512</span><span style="color: #000000">;
+</span><span style="color: #008080">26</span> 
+<span style="color: #008080">27</span>                     <span style="color: #008000">//</span><span style="color: #008000"> 由于回传String长度过长在反串行化时会出错！
+</span><span style="color: #008080">28</span>                     <span style="color: #008000">//</span><span style="color: #008000"> 所以放大最大字符串长度</span>
+<span style="color: #008080">29</span>                     _BasicHttpBinding.ReaderQuotas.MaxStringContentLength = <span style="color: #800080">8192</span> * <span style="color: #800080">1022</span><span style="color: #000000">;
+</span><span style="color: #008080">30</span>                     _BasicHttpBinding.ReaderQuotas.MaxArrayLength = <span style="color: #800080">8192</span> * <span style="color: #800080">1022</span><span style="color: #000000">;
+</span><span style="color: #008080">31</span>                     _BasicHttpBinding.SendTimeout = <span style="color: #0000ff">new</span> TimeSpan(<span style="color: #800080">0</span>, <span style="color: #800080">5</span>, <span style="color: #800080">0</span><span style="color: #000000">);
+</span><span style="color: #008080">32</span> 
+<span style="color: #008080">33</span> <span style="color: #000000">                }
+</span><span style="color: #008080">34</span> 
+<span style="color: #008080">35</span>                 <span style="color: #0000ff">return</span><span style="color: #000000"> _BasicHttpBinding;
+</span><span style="color: #008080">36</span> <span style="color: #000000">            }
+</span><span style="color: #008080">37</span> <span style="color: #000000">        }
+</span><span style="color: #008080">38</span> <span style="color: #000000">    }
+</span><span style="color: #008080">39</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>把CustomService.svc部署到IIS上面、创建代理类的方法、客户端调用和默认工厂里面的方法一样，此处不在描述。</p>
+<p>项目代码下载路径：https://files.cnblogs.com/files/dotnet261010/WCFStudyDemo.rar</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/dotnet261010/category/923743.html" target="_blank">WCF服务</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7407444,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;e29b155b-5f84-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dotnet261010/" target="_blank"><img src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dotnet261010/">.NET开发菜鸟</a><br>
+            <a href="http://home.cnblogs.com/u/dotnet261010/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/dotnet261010/followers">粉丝 - 23</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;e29b155b-5f84-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7407444,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(7407444,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/dotnet261010/p/7419828.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/dotnet261010/p/7419828.html" title="发布于2017-08-23 19:42">Entity Framework（五）：使用配置伙伴创建数据库</a><br><a href="http://www.cnblogs.com/dotnet261010/p/7428513.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/dotnet261010/p/7428513.html" title="发布于2017-08-25 16:09">C#调用SQL Server有参的存储过程</a><br></div>
+</div>
+
+
+		</div>
+		<div class="itemdesc">
+			发表于 <span id="post-date">2017-08-24 15:28</span> <a href="http://www.cnblogs.com/dotnet261010/">.NET开发菜鸟</a> 阅读(<span id="post_view_count">2491</span>) 评论(<span id="post_comment_count">6</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7407444" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#" onclick="AddToWz(7407444);return false;">收藏</a>
+		</div>
+	</div>
+	<div class="seperator">&nbsp;</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=308258,cb_entryId=7407444,cb_blogApp=currentBlogApp,cb_blogUserGuid='e29b155b-5f84-e611-845c-ac853d9f53ac',cb_entryCreatedDate='2017/8/24 15:28:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<div class="post">
+<a name="评论"></a>
+<div class="moreinfo">
+	<div class="moreinfotitle">
+		评论
+	</div>
+	
+	
+			<div class="comments">
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3800888" class="layer">#1楼</a><a name="3800888" id="comment_anchor_3800888"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3800888" class="blog_comment_body">楼主：这句话讲错了吧。“CodeBehind是服务实现类所在的文件名”，我一直不知道CodeBehind是干什么的。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3800888,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3800888,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3800888_avatar" style="display:none;">http://pic.cnblogs.com/face/1161448/20170609223658.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3800888" href="http://www.cnblogs.com/okjulien/" target="_blank">okjulien</a> <a href="http://msg.cnblogs.com/send/okjulien" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-09-29 20:53</span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3801065" class="layer">#2楼</a><a name="3801065" id="comment_anchor_3801065"></a>[<span class="louzhu">楼主</span>]&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3801065" class="blog_comment_body"><a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3800888" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3800888);">@</a>
+okjulien<br>哪里讲错了，如果你做过ASP.NET的webform程序就应该知道里面也有一个CodeBehind，它指向后台代码，和前台界面实现分类，WCF里面的CodeBehind也是同样的道理。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3801065,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3801065,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+				<div class="comment_footer"><a id="a_comment_author_3801065" href="http://www.cnblogs.com/dotnet261010/" target="_blank">.NET开发菜鸟</a> <a href="http://msg.cnblogs.com/send/.NET%E5%BC%80%E5%8F%91%E8%8F%9C%E9%B8%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-09-30 08:58</span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3801071" class="layer">#3楼</a><a name="3801071" id="comment_anchor_3801071"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3801071" class="blog_comment_body">CodeBehind属性可以不要，或者CodeBehind属性值随便起个名字，程序都不会报错啊。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3801071,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3801071,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3801071_avatar" style="display:none;">http://pic.cnblogs.com/face/1161448/20170609223658.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3801071" href="http://www.cnblogs.com/okjulien/" target="_blank">okjulien</a> <a href="http://msg.cnblogs.com/send/okjulien" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-09-30 09:02</span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3801081" class="layer">#4楼</a><a name="3801081" id="comment_anchor_3801081"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3801081" class="blog_comment_body">客户端引用WCF的时候一般是静态引用，直接添加服务引用，这种方式如果IP地址和端口号变了，需要用代码重新编译然后在部署，这样不方便。这里使用svcutil代理类的方式进行客户端的调用。<br><br>我是直接添加“引用”，引用接口所在的项目，本人认为添加引用更好，代码更干净，这样服务端和客户端接口能保持完全一致，楼主的方法服务端与客户端接口并不能保持完全一致。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3801081,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3801081,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3801081_avatar" style="display:none;">http://pic.cnblogs.com/face/1161448/20170609223658.png</span></div>
+				<div class="comment_footer"><a id="a_comment_author_3801081" href="http://www.cnblogs.com/okjulien/" target="_blank">okjulien</a> <a href="http://msg.cnblogs.com/send/okjulien" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-09-30 09:09</span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3801100" class="layer">#5楼</a><a name="3801100" id="comment_anchor_3801100"></a>[<span class="louzhu">楼主</span>]&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3801100" class="blog_comment_body">如果使用直接添加引用的方式，服务端的IP地址改变了，需要把代码放到生产环境中重新编译，这样不太方便。如果使用代理类的方式，只需要修改配置文件里面的IP地址就好了。当然每个人有每个人的习惯，按照自己的习惯去做就可以了。这里只是我自己的习惯，不一定要求每个人都这样做。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3801100,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3801100,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+				<div class="comment_footer"><a id="a_comment_author_3801100" href="http://www.cnblogs.com/dotnet261010/" target="_blank">.NET开发菜鸟</a> <a href="http://msg.cnblogs.com/send/.NET%E5%BC%80%E5%8F%91%E8%8F%9C%E9%B8%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2017-09-30 09:18</span></div>
+			</div>
+		
+			<div class="comment">
+				<div class="comment_title">
+					<a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3900962" class="layer">#6楼</a><a name="3900962" id="comment_anchor_3900962"></a><span id="comment-maxId" style="display:none;">3900962</span><span id="comment-maxDate" style="display:none;">2018/1/31 11:25:11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div class="comment_content"><div id="comment_body_3900962" class="blog_comment_body"><a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#3801100" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3801100);">@</a>
+.NET开发菜鸟<br>使用直接添加引用的方式，服务端的IP地址改变了，不需要把代码放到生产环境中重新编译，也是直接修改config文件</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3900962,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3900962,&#39;Bury&#39;,this)">反对(0)</a></div></div>
+				<div class="comment_footer"><a id="a_comment_author_3900962" href="http://www.cnblogs.com/lip-blog/" target="_blank">月月想你，李</a> <a href="http://msg.cnblogs.com/send/%E6%9C%88%E6%9C%88%E6%83%B3%E4%BD%A0%EF%BC%8C%E6%9D%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a> 评论于  <span class="comment_date">2018-01-31 11:25</span></div>
+			</div>
+		
+			</div>
+		
+</div>
+</div>
+<div class="seperator">&nbsp;</div>
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/dotnet261010/p/7407444.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型工控、组态\仿真、建模CAD源码2018！</a><br><a href="https://www.cnblogs.com/cmt/p/8505033.html" target="_blank">【活动】世界各地的青年团体，将在 2050 握手团聚</a><br><a href="https://dnspod.cloud.tencent.com/act/yearendsales?from=IT&amp;fromSource=gwzcw.781137.781137.781137" target="_blank">【抢购】新注册用户域名抢购1元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://dnspod.cloud.tencent.com/act/weapp?fromSource=gwzcw.781158.781158.781158" target="_blank"><img width="300" height="250" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/24442-20180228164005211-881957482.jpg" alt="tencent0228"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/591150/" target="_blank">为什么浏览器的用户代理字符串以Mozilla开头</a><br> ·  <a href="https://news.cnblogs.com/n/591149/" target="_blank">Android P将允许蓝牙方式将手机变成无线键鼠</a><br> ·  <a href="https://news.cnblogs.com/n/591148/" target="_blank">谷歌发布全球首个72量子比特通用量子计算机</a><br> ·  <a href="https://news.cnblogs.com/n/591146/" target="_blank">亚马逊证实收购GameSparks 云游戏领域大展拳脚</a><br> ·  <a href="https://news.cnblogs.com/n/591145/" target="_blank">三星电子去年研发支出超155亿美元 净利润390亿美元</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./WCF服务三：svc文件详解 - .NET开发菜鸟 - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/575255/" target="_blank">写给自学者的入门指南</a><br> ·  <a href="http://kb.cnblogs.com/page/578690/" target="_blank">和程序员谈恋爱</a><br> ·  <a href="http://kb.cnblogs.com/page/585734/" target="_blank">学会学习</a><br> ·  <a href="http://kb.cnblogs.com/page/588938/" target="_blank">优秀技术人的管理陷阱</a><br> ·  <a href="http://kb.cnblogs.com/page/590141/" target="_blank">作为一个程序员，数学对你到底有多重要</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+                    </div></td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+
+
+</body></html>
