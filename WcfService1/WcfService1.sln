@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService1", "WcfService1\WcfService1.csproj", "{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 双工", "1 双工", "{1F8BE855-9012-4259-A491-150D99E01A42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "..\ConsoleApplication1\ConsoleApplication1.csproj", "{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5} = {2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "代码配置生成wcf", "代码配置生成wcf", "{FAB4A47D-D3E6-49A0-A8C8-D024198FD38C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformForWcfHost", "..\WinformForWcfHost\WinformForWcfHost.csproj", "{07002587-FCAD-4040-AAAA-ED17BE3D66D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "..\ConsoleApplication2\ConsoleApplication2.csproj", "{250FCF7E-2759-451E-AA95-1A913E298E06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07002587-FCAD-4040-AAAA-ED17BE3D66D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07002587-FCAD-4040-AAAA-ED17BE3D66D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07002587-FCAD-4040-AAAA-ED17BE3D66D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07002587-FCAD-4040-AAAA-ED17BE3D66D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250FCF7E-2759-451E-AA95-1A913E298E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250FCF7E-2759-451E-AA95-1A913E298E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250FCF7E-2759-451E-AA95-1A913E298E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250FCF7E-2759-451E-AA95-1A913E298E06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2AC49F4E-F91D-4DE6-98D1-9E564022AFF5} = {1F8BE855-9012-4259-A491-150D99E01A42}
+		{DE2E32EF-3FBC-4AFD-9636-3DCD4C1CAB1B} = {1F8BE855-9012-4259-A491-150D99E01A42}
+		{07002587-FCAD-4040-AAAA-ED17BE3D66D0} = {FAB4A47D-D3E6-49A0-A8C8-D024198FD38C}
+		{250FCF7E-2759-451E-AA95-1A913E298E06} = {FAB4A47D-D3E6-49A0-A8C8-D024198FD38C}
+	EndGlobalSection
+EndGlobal
